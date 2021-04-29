@@ -1,0 +1,12 @@
+var songs=[
+	{
+		"title":"Street Fighter II",
+		"videoId":"x9X2GN87F18",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Il était une fois dans l'Ouest",
+		"videoId":"wWtqkz6SH1Y",
+		"theme":"Film"
+	}
+];

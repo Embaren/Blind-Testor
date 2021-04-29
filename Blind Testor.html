@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!-- BLIND TESTOR v.1.1 -->
+<!-- Les extraits sont à référencer dans le fichier "songs.json" -->
+<!-- p ou barre espace  : Met en pause à la fin de l'extrait -->
+<!-- m :  Mute/Démute l'audio -->
+<!-- Emile BARBIER--RENARD - 2021 -->
+<!-- Contact : emile.barbier-renard@telecom-st-etienne.fr -->
+<html lang="en">
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <title>Blind Testor</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script>
+		var delay = 20;  // Temps laissé pour deviner
+		var reveal = 10; // Durée de l'affichage du titre
+
+		var randomOrder=true; // Musique en ordre aléatoire
+	</script>
+</head>
+
+<body>
+	<div id="top">
+		<h3 id="progress">../..</h3>
+		<h3 id="pause">Pause</h3>
+	</div>
+	<div id="reveal">
+		<div id="player"></div>
+		<h2 id="title"></h2>
+	</div>
+	<div id="infos">
+		<h1 id="countdown"></h1>
+		<h2 id="theme"></h2>
+	</div>
+
+	<script src="https://www.youtube.com/iframe_api"></script>
+	<script type="text/javascript"  src="songs.json"></script>
+	<script>
+		// 2. This code loads the IFrame Player API code asynchronously.
+        
+        $("#reveal").hide();
+        
+		delay=delay*1000;
+		reveal = reveal*1000;
+		var totalDelay=delay+reveal;
+		var pause=false;
+        var init=true;
+
+		var mySongs=songs;
+        
+        var timeoutList=[];
+        
+        var beginTime;
+        var elapsedTime;
+		
+		if(randomOrder){
+			mySongs.sort(() => Math.random() - 0.5);
+		}
+
+		var nb=0;
+
+		var tag = document.createElement('script');
+		tag.src = "https://www.youtube.com/iframe_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+		// 3. This function creates an <iframe> (and YouTube player)
+		//    after the API code downloads.
+		var player;
+		
+		function onYouTubeIframeAPIReady() {
+			player = new YT.Player('player', {
+				videoId: mySongs[nb].videoId,
+				startSeconds:0,
+				endSeconds:totalDelay/1000,
+				events: {
+					'onReady': onPlayerReady,
+					'onStateChange': onPlayerStateChange
+				}
+			});
+		}
+
+		function onPlayerReady(event) {
+			initBlindTest();
+			//nb=nb+1;
+		}
+		  
+		function onPlayerStateChange(event){
+		}
+		  
+		function stopVideo() {
+			player.stopVideo();
+		}
+		function nextVideo() {
+			player.nextVideo();
+		}
+		  
+		function initBlindTest(){
+			console.log(player.getPlayerState())
+				
+			$("#progress").text("0/"+mySongs.length);
+			$("#theme").text("avant le début du test...");
+			$("#countdown").text(delay/1000);
+            beginTime=(new Date().getTime());
+			$("#infos").show();
+			countdown(delay/1000-1);
+			timeoutList.push(setTimeout(function (){
+                init=false
+				displayCountdown();
+                beginTime=(new Date().getTime());
+				player.nextVideo();
+				player.playVideo();
+				timeoutList.push(setTimeout(function (){
+                    (nb++)
+					blindTest();
+				}, totalDelay));
+			}, delay));
+		}
+		  
+		function blindTest(){
+			if(pause){
+				timeoutList.push(setTimeout(function (){
+						blindTest()
+					}, 100));
+			}
+			else{
+				console.log([nb,songs.length])
+				if(nb<songs.length){
+					//player.stopVideo();
+					console.log(player.getPlayerState())
+					player.cueVideoById({'videoId':mySongs[nb].videoId,'startSeconds':0,'endSeconds':totalDelay/1000});
+					player.loadVideoById({'videoId':mySongs[nb].videoId,'startSeconds':0,'endSeconds':totalDelay/1000});
+					//player.playVideo();
+                    beginTime=(new Date().getTime());
+					player.nextVideo();
+					player.playVideo();
+					
+					displayCountdown();
+					
+					timeoutList.push(setTimeout(function (){
+						(nb++)
+						blindTest()
+					}, totalDelay));
+				}
+			}
+		}
+		  
+		function countdown(i){
+			if (i>0) {
+				timeoutList.push(setTimeout(function (){
+					$("#countdown").text(i);
+					countdown(i-1);
+				}, 1000));
+			}
+		}
+		
+		function displayCountdown(){
+			$("#progress").text(nb+1+"/"+mySongs.length);
+			$("#reveal").hide();
+			$("#theme").text(mySongs[nb].theme);
+			$("#countdown").text(delay/1000);
+			$("#infos").show();
+			countdown(delay/1000-1);
+			$("#title").text(mySongs[nb].title);
+			timeoutList.push(setTimeout(function (){
+				$("#reveal").show();
+				$("#infos").hide();
+			}, delay));
+		}
+		  
+		document.addEventListener('keydown', (e) => {
+			if (!e.repeat){
+				if(e.key=="p" || e.key==" "){
+					pause=!pause;
+					if(pause){
+						$("#pause").css("opacity",1);
+                        player.pauseVideo();
+                        elapsedTime=(new Date().getTime())-beginTime;
+                        clearTimeouts();
+					}
+					else{
+						$("#pause").css("opacity",0);
+                        
+                        beginTime=(new Date().getTime())-elapsedTime;
+                        
+                        if(init){
+                            timeoutList.push(setTimeout(function(){
+                                $("#countdown").text(1+Math.floor((delay-elapsedTime)/1000));
+                                countdown(Math.floor((delay-elapsedTime)/1000));
+                                timeoutList.push(setTimeout(function (){
+                                    init=false
+                                    displayCountdown();
+                                    beginTime=(new Date().getTime());
+                                    player.nextVideo();
+                                    player.playVideo();
+                                    timeoutList.push(setTimeout(function (){
+                                        (nb++)
+                                        blindTest();
+                                    }, totalDelay));
+                                },1000*Math.floor((delay-elapsedTime)/1000)));
+                            },(delay-elapsedTime)-1000*Math.floor((delay-elapsedTime)/1000)));
+                        }
+                        else{
+                            player.playVideo();
+                            timeoutList.push(setTimeout(function(){
+                                if(elapsedTime<delay){
+                                    $("#countdown").text(1+Math.floor((delay-elapsedTime)/1000));
+                                    countdown(Math.floor((delay-elapsedTime)/1000));
+                                    timeoutList.push(setTimeout(function (){
+                                        $("#reveal").show();
+                                        $("#infos").hide();
+                                    }, 1000*Math.floor((delay-elapsedTime)/1000)));
+                                }
+                                
+                                timeoutList.push(setTimeout(function (){
+                                    (nb++)
+                                    blindTest()
+                                }, 1000*Math.floor((totalDelay-elapsedTime)/1000)));
+                                
+                            },(delay-elapsedTime)-1000*Math.floor((delay-elapsedTime)/1000)));
+                        }
+					}
+				}
+				if(e.key=="m"){
+					if(player.isMuted()){
+						player.unMute();
+					}
+					else{
+						player.mute();
+					}
+				}
+				if(e.key=="ArrowRight"){
+					
+				}
+				if(e.key=="ArrowLeft"){
+					
+				}
+			}
+		});
+        
+        function clearTimeouts(){
+            for (i=0; i<timeoutList.length ; i++){
+                clearTimeout(timeoutList[i]);
+            }
+            timeoutList=[];
+        }
+        
+	</script>
+</body>

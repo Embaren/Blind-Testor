@@ -1,0 +1,347 @@
+var songs=[
+	{
+		"title":"Street Fighter II",
+		"videoId":"x9X2GN87F18",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Il était une fois dans l'Ouest",
+		"videoId":"wWtqkz6SH1Y",
+		"theme":"Film"
+	},
+	{
+		"title":"Les Shadoks",
+		"videoId":"S56DHtbWgEw",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Batman",
+		"videoId":"iSWzlCcF2HA",
+		"theme":"Film"
+	},
+	{
+		"title":"Spider-Man 3",
+		"videoId":"cbLpfsG68io",
+		"theme":"Film"
+	},
+	{
+		"title":"Retour vers le Futur",
+		"videoId":"MPphWCr4ba8",
+		"theme":"Film"
+	},
+	{
+		"title":"Le Parrain",
+		"videoId":"3o_9rMTPOt0",
+		"theme":"Film"
+	},
+	{
+		"title":"Marvel's Spider-Man",
+		"videoId":"6XpU86QsZj0",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"OSS 117: Le Caire Nid d'Espions",
+		"videoId":"RniVZ0zte3w",
+		"theme":"Film"
+	},
+	{
+		"title":"Les temps modernes",
+		"videoId":"7tfyyBs_ntI",
+		"theme":"Film"
+	},
+	{
+		"title":"Barry Lyndon",
+		"videoId":"y-ythWgSf1s",
+		"theme":"Film"
+	},
+	{
+		"title":"Star Wars: La Revanche des Sith",
+		"videoId":"DITknhZIgQc",
+		"theme":"Film"
+	},
+	{
+		"title":"Star Trek: The Motion Picture",
+		"videoId":"Mj4z2Y1y2Ak",
+		"theme":"Film"
+	},
+	{
+		"title":"Rocky",
+		"videoId":"fB_ptxu825A",
+		"theme":"Film"
+	},
+	{
+		"title":"Rayman: Legends",
+		"videoId":"kD2salaVNzQ",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Terraria",
+		"videoId":"x23I8f9PwlI",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Pokémon: Diamond Version",
+		"videoId":"HBYUd7heRUE",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Batman",
+		"videoId":"JvzsFS4Plmw",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Mario Kart: Double Dash!!",
+		"videoId":"O7eGxoFLOI4",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Black Ops II Zombies",
+		"videoId":"bPj_SmRW4lM",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Undertale",
+		"videoId":"wDgQdr8ZkTw",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Assassin's Creed II",
+		"videoId":"FSVHx23ByhM",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Super Smash Bros: Brawl",
+		"videoId":"zeKE0NHUtUw",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"The Legend of Zelda: The Wind Waker",
+		"videoId":"gEoU70DXr90",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Place Mii",
+		"videoId":"Twi92KYddW4",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"TETRIS",
+		"videoId":"z3ZiVn5L9vM",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"DOOM",
+		"videoId":"MEYxYcLi1lc",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Age of Mythology",
+		"videoId":"5LwZ6AOUvHo",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Age of Empires III",
+		"videoId":"0KpXzFOFswA",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Minecraft",
+		"videoId":"aBkTkxKDduc",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Super Mario Galaxy",
+		"videoId":"49pOiyZYWBQ",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"The Elder Scrolls V : Skyrim",
+		"videoId":"AVy7YPNP_zI",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Ratz",
+		"videoId":"w9c77AAFP3Y",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"X-Men",
+		"videoId":"C3xtzMUsciM",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Albator",
+		"videoId":"AMIrFNHAGyE",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Portal [Still Alive]",
+		"videoId":"Y6ljFaKRTrI",
+		"theme":"Jeu vidéo"
+	},
+	{
+		"title":"Les Zinzins de l'espace",
+		"videoId":"mbd2linSia4",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Kim Possible",
+		"videoId":"oqUXOSRkmT4",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Spectacular Spider-Man",
+		"videoId":"1_TC8hG_vHs",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Oggy et les cafards",
+		"videoId":"2apJXX46ce0",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Justice League",
+		"videoId":"IWpKjFsLfi8",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Les Simpsons",
+		"videoId":"_JGfbB4UbHc",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Dragon Ball Z",
+		"videoId":"KUBnnrvTC2o",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Ulysse 31",
+		"videoId":"MrdmtFF7qGw",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Rick et Morty",
+		"videoId":"E6TUs69Cw94",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Merrie Melodies",
+		"videoId":"0jTHNBKjMBU",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Tom et Jerry",
+		"videoId":"RtbUHiVuKBs",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Capitaine FLAM",
+		"videoId":"NtxZsN6Em3g",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"La Famille Pirate",
+		"videoId":"XDNyJbqmLCE",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Denver le dernier dinosaure",
+		"videoId":"uzcsqG35ib4",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Bob l'Eponge",
+		"videoId":"XljECWjdiW8",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Les Dalton",
+		"videoId":"lgqWiY_8D10",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Steven Universe",
+		"videoId":"PfKUdmTq2MI",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Woody Woodpecker",
+		"videoId":"1PWcc3y_NlY",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Inspecteur Gadget",
+		"videoId":"yFoKXGN94wY",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Foot 2 Rue",
+		"videoId":"1d7WM3y7xgk",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Les Mystérieuses Cités d'Or",
+		"videoId":"9w_zn3uRwPU",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Teen Titans",
+		"videoId":"yL75mtNZ6PA",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Il était une fois... la vie",
+		"videoId":"kNnpHAszq64",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Le laboratoire de Dexter",
+		"videoId":"4ZUa5eXQ1X4",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Titi et Grosminet mènent l'enquête",
+		"videoId":"iteNiJUYhvg",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Winx Club",
+		"videoId":"0L4wXoPKvYA",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Scooby Doo",
+		"videoId":"Af9azB7r3TY",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Code Lyoko",
+		"videoId":"c58zKvmtLJQ",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Shuriken School",
+		"videoId":"QJmYXKIHN4A",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Totally Spies",
+		"videoId":"-tlDSnc5dmo",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Goldorak",
+		"videoId":"dOO3LgzXdYg",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"Ben 10",
+		"videoId":"C4AF8Q_TD4w",
+		"theme":"Dessin animé"
+	},
+	{
+		"title":"The Batman",
+		"videoId":"4rgKDtueytA",
+		"theme":"Dessin animé"
+	}
+];
