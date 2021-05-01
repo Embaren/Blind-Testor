@@ -1,2 +1,2 @@
 # Blind-Testor
-A blind test tool to create blind test from YouTube videos !
+A blind test tool to create blind tests from YouTube videos !
